@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>D3 Chart</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <h1>Sample D3 Chart</h1>
+    <svg id="chart" width="600" height="400"></svg>
+
+    <script>
+        fetch("/api/chart-data/")
+            .then(response => response.json())
+            .then(data => {
+                const svg = d3.select("#chart");
+                svg.selectAll("rect")
+                    .data(data.values)
+                    .enter()
+                    .append("rect")
+                    .attr("x", (d, i) => i * 100)
+                    .attr("y", d => 400 - d * 3)
+                    .attr("width", 50)
+                    .attr("height", d => d * 3)
+                    .attr("fill", "blue");
+            });
+    </script>
+</body>
+</html>
