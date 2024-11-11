@@ -1,50 +1,74 @@
-# project_3IVIS
+# 3IVIS Project
 
-project for working student position
+This is a Django-based project for the 3IVIS application. It includes both a web application with a D3 chart rendering after login and a REST API for data fetching.
 
-[![Built with Cookiecutter Django](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter)](https://github.com/cookiecutter/cookiecutter-django/)
-[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+## Features
 
-License: MIT
+- **Web Application**: Login functionality with D3 chart rendering upon successful authentication.
+- **REST API**: A REST API that allows fetching data for the D3 chart after successful authentication.
+- **Data Visualization**: The project integrates Django with D3.js for data visualization.
 
-## Settings
+## Requirements
 
-Moved to [settings](https://cookiecutter-django.readthedocs.io/en/latest/1-getting-started/settings.html).
+- Python 3.10.1
+- Django 3.x
+- PostgreSQL (optional depending on your database configuration)
+- D3.js (used for rendering the chart)
 
-## Basic Commands
+## Setup Instructions
 
-### Setting Up Your Users
+Follow the steps below to get the project running in your local development environment.
 
-- To create a **normal user account**, just go to Sign Up and fill out the form. Once you submit it, you'll see a "Verify Your E-mail Address" page. Go to your console to see a simulated email verification message. Copy the link into your browser. Now the user's email should be verified and ready to go.
+### 1. Install Python and Dependencies
 
-- To create a **superuser account**, use this command:
+Make sure you have [Python](https://www.python.org/downloads/) installed (preferably version 3.10 or higher).
 
-      $ python manage.py createsuperuser
+Set up a virtual environment for the project:
 
-For convenience, you can keep your normal user logged in on Chrome and your superuser logged in on Firefox (or similar), so that you can see how the site behaves for both kinds of users.
+```bash
+python -m venv 3IVIS_venv
+```
 
-### Type checks
+Activate the virtual environment:
 
-Running type checks with mypy:
+On Windows:
 
-    $ mypy ws_3ivis
+```bash
+3IVIS_venv\Scripts\activate
+```
+On macOS/Linux:
 
-### Test coverage
+```bash
+source 3IVIS_venv/bin/activate
+```
+Then install the dependencies:
 
-To run the tests, check your test coverage, and generate an HTML coverage report:
+```bash
+pip install -r requirements.txt
+```
 
-    $ coverage run -m pytest
-    $ coverage html
-    $ open htmlcov/index.html
+### 2. Set Up the Database
+If you're using PostgreSQL, make sure you have it installed and running. Update your settings.py for the database connection. You can use SQLite for development if preferred.
 
-#### Running tests with pytest
+### 3. Run Migrations
+Apply the migrations to set up the database:
 
-    $ pytest
+```bash
+python manage.py migrate
+```
 
-### Live reloading and Sass CSS compilation
+### 4. Create a Superuser
+To access the Django admin interface, create a superuser:
 
-Moved to [Live reloading and SASS compilation](https://cookiecutter-django.readthedocs.io/en/latest/2-local-development/developing-locally.html#using-webpack-or-gulp).
+```bash
+python manage.py createsuperuser
+```
 
-## Deployment
+### 5. Run the Development Server
+Start the Django development server:
 
-The following details how to deploy this application.
+```bash
+python manage.py runserver
+```
+
+The server should now be running at http://127.0.0.1:8000/. You can access the web application and the Django admin interface (at /admin) with the superuser credentials.
